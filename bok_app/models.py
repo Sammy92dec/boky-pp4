@@ -19,7 +19,7 @@ class Restaurant(models.Model):
 
 #Customer
 
-class User(models.Model):
+class Client(models.Model):
     name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField()
@@ -40,7 +40,7 @@ class Table(models.Model):
 #booking
 class Booking(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name="bookings")
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="bookings")
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="bookings")
     booking_date = models.DateField()
     booking_time = models.TimeField()
     duration = models.PositiveIntegerField(help_text="Duration in minutes")  # For how long the table is booked
