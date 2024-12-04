@@ -47,7 +47,7 @@ class Booking(models.Model):
     notes = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return f"Booking for {self.customer.name} on {self.booking_date} at {self.booking_time}"
+        return f"Booking for {self.client.name} on {self.booking_date} at {self.booking_time}"
 
     class Meta:
         unique_together = ("table", "booking_date", "booking_time")   
