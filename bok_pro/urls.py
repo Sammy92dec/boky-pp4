@@ -22,5 +22,7 @@ from bok_app import views as home_views
 urlpatterns = [
     path('about/', about_views.about, name='about'),
     path('', home_views.home, name='home'),
+    
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
 ]
