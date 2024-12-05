@@ -3,5 +3,5 @@ from . import index_views  # Import the index_views
 
 
 urlpatterns = [
-    path('', views.index, name='home'),  # Home page
+    path('', views.index, name='user'),  # Home page
 ]
