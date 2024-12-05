@@ -28,6 +28,7 @@ urlpatterns = [
     path('userpage/',user_views.user, name='user'),
     path('booking/', booking_views.booking, name='booking'),  # Routes to booking_app
     path('admin/', admin.site.urls),
+     path('accounts/', include('django.contrib.auth.urls')),  # Login/Logout
     path('summernote/', include('django_summernote.urls')),
 ]
 
