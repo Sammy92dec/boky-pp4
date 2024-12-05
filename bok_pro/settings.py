@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-^c17y-@0rwez2wjrv#48lk!uo_m+lh@%#vq!(adxj9ax+zr^cq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ["8000-sammy92dec-bokypp4-1jeeh5c5htn.ws.codeinstitute-ide.net"]
@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bok_app',
     'about_app',
-    'django_summernote',
+    'booking_app',
+    'django_summernote', # Summernote integration
 ]
 
 MIDDLEWARE = [
