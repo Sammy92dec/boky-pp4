@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from about_app import views as about_views
 from bok_app import views as home_views
+from booking_app import views as booking_views
 
 urlpatterns = [
-    path('about/', about_views.about, name='about'),
-    path('', home_views.home, name='home'),
-    
+    path('about/', about_views.about, name='about'), # Routes to AboutApp
+    path('', home_views.home, name='home'), # Routes to bok_app
+    path('booking/', booking_views.booking, name='booking'),  # Routes to BookingTable
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
 ]
+
+
