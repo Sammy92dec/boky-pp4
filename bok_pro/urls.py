@@ -25,7 +25,7 @@ from .import views
 urlpatterns = [
     path('about/', about_views.about, name='about'), # Routes to about_app
     path('',home_views.home, name='home'), # Routes to bok_app
-    path('userpage/',user_views.user, name='user'),
+    path('menu/',user_views.user, name='user'),
     path('booking/', booking_views.booking, name='booking'),  # Routes to booking_app
     path('admin/', admin.site.urls),
      path('accounts/', include('django.contrib.auth.urls')),  # Login/Logout
