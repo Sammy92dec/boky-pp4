@@ -12,7 +12,10 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Kanit', sans-serif;
+    height: 100%;
+    margin: 0;
 }
+
 
 /* Header*/
 .navbar {
@@ -29,9 +32,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Kanit', sans-serif;
 }
 
+/* main */
 main {
     flex: 1 0 auto;
     background-color: white;
+}
+
+button {
+    margin: 0;
+    padding: 5px;
 }
 
 /* Logo */
