@@ -24,7 +24,7 @@ body {
 }
 
 a.nav-link {
-    color: navy;
+    color: #a1a17e;
 }
 
 
@@ -87,20 +87,21 @@ img.logo {
     left: 50%;
     transform: translate(-50%, -50%);
     color:white;
-    font-size: 2rem;
-    font-weight: bolder;
+    font-size: 1.5rem; 
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
     padding: 10px;
+    
 }
 
 .overlay-content .btn {
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 5rem;
     padding: 10px 20px;
     border: none;
-    display: inline-block;
+    display: inline-block;  
 }
+
 /* form */
 
 .form {
@@ -130,5 +131,19 @@ footer .btn-floating {
 footer .copyright {
     font-size: 14px;
     text-align: center;
-    color: black;
+    color: #a1a17e;
+}
+
+
+
+@media (max-width: 768px) {
+    .overlay-content {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 445px) {
+    .overlay-content {
+        font-size: 9px;
+    }
 }
