@@ -1,10 +1,29 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}About Us{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block content %}
-<h1>About Us</h1>
-<p>Welcome to the About page! Here, we share information about the restaurant and events.</p>
+
+<section class="row">
+    <div class="col-12">
+        <div class="image-container">
+            <img src="{% static 'images/about/event.jpg' %}" class="img-fluid" alt="A plate with food image">
+
+<p class="overlay-content"> <br> Explore upcoming events,
+    <br> Browse through photos, 
+    <br> Read reviews from our valued guests.
+
+<br>See what makes our space unique and get inspired for your next visit!
+<br>
+<br>Not a user yet? Sign up or login to book and enjoy a delightful experience!</p>
+</div>
+</div>
+</section> 
+
+ {% include 'about_app/post_list.html' %}
+
+
 
 <!-- Additional content for the About page -->
 {% endblock %}

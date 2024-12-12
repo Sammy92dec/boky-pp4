@@ -1,0 +1,19 @@
+{% load static %}
+
+{% block content %}
+<div class="mt-2">
+    {% if user.is_authenticated %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Post title" required><br>
+        <textarea name="content" placeholder="Write your post" required></textarea>
+        <br>
+        <button type="submit">Post</button>
+    </form>
+    {% else %}
+    <p>Login to post or Like.</p>
+    
+    {% endif %}
+</div>
+
+{% endblock %}
