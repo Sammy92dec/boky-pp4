@@ -10,6 +10,15 @@
         <br>
         <button type="submit">Post</button>
     </form>
+
+    {% for post in posts %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    <p>By: {{ post.author }}</p>
+{% empty %}
+    <p>No posts available.</p>
+{% endfor %}
+
     {% else %}
     <p>Login to post or Like.</p>
     

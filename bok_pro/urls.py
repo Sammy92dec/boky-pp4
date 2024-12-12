@@ -24,12 +24,14 @@ from .import views
 
 urlpatterns = [
     path('about/', about_views.about, name='about'), # Routes to about_app
+    path('about/', include('about_app.urls')),
     path('',home_views.home, name='home'), # Routes to bok_app
     path('menu/',user_views.user, name='user'),
     path('booking/', booking_views.booking, name='booking'),  # Routes to booking_app
     path('admin/', admin.site.urls),
      path('accounts/', include('django.contrib.auth.urls')),  # Login/Logout
-    path('summernote/', include('django_summernote.urls')),
+    path('summernote/', include('django_summernote.urls')),    # Routes to food_drink
+    path('menu/', include('food_drink.urls')),
 ]
 
 

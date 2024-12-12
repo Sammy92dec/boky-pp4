@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'about_app',
     'booking_app',
     'django_summernote', # Summernote integration
+    'food_drink',
 ]
 
 MIDDLEWARE = [

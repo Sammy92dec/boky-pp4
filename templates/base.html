@@ -36,7 +36,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <div class="dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Menus
+                          </a>
+                          <!-- Menu dropdown to food and drink menus-->
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'foods' %}">Food Menu</a></li>
+                            <li><a class="dropdown-item" href="{% url 'drinks' %}">Drinks Menu</a></li>
+                          </ul>
+                        </div>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
