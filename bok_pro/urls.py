@@ -32,6 +32,8 @@ urlpatterns = [
      path('accounts/', include('django.contrib.auth.urls')),  # Login/Logout
     path('summernote/', include('django_summernote.urls')),    # Routes to food_drink
     path('menu/', include('food_drink.urls')),
+    path('foods/', views.food, name='foods'),
+    path('drinks/', views.drink, name='drinks'),
 ]
 
 

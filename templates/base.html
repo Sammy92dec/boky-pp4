@@ -39,9 +39,8 @@
                     <li class="nav-item">
                         <div class="dropdown">
                           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Menus
-                          </a>
+                            aria-expanded="false">Menu</a>
+                        
                           <!-- Menu dropdown to food and drink menus-->
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'foods' %}">Food Menu</a></li>
@@ -72,10 +71,12 @@
         </div>
     </nav>
 
+ <!-- Main Content -->
+ <main class="container mt-5">
     <!-- Main content block -->
-    
+
         {% block content %}
-    <main class="text-center mt-5">
+    
         <section class="row">
             <div class="col-12">
                 <div class="image-container">
@@ -83,11 +84,8 @@
 
     <p class="overlay-content">Welcome to the Sam's Bistro! 
     <br>The dishes are prepared with ingredients of the highest quality.
-    <br>In the kitchen, vegetables and root vegetables take center stage, serving as the foundation for every dish.
     <br>Sam's Bistro is also well known for its yummy dessert, which are the perfect plan for cozy evenings.
     <br>Warm drinks, cold beverages, and alcoholic options complement the menu perfectly.*MENU*</p>
-    
-
     </div>
     </div>
     </section>
@@ -97,7 +95,7 @@
         <div class="col-12">
             <div class="image-container">
                 <img src="static/images/home-page/2nd.jpg" class="img-fluid" alt="a plate with food image">
-    <section>
+    
     <p class="overlay-content"> More about us in the About section,where you can
         
          <br> Explore upcoming events,
@@ -123,10 +121,11 @@
         </div>
     </section>
     
-    </main>
+    
     {% endblock %}
 
-    
+</main>
+
     <!-- Footer -->
 <footer class="bg-dark text-center text-white mt-auto color">
     <div class="container">
