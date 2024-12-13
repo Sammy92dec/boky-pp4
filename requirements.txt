@@ -1,7 +1,9 @@
 asgiref==3.8.1
+crispy-bootstrap5==2024.10
 dj-database-url==0.5.0
 Django==4.2.16
 django-allauth==65.3.0
+django-crispy-forms==2.3
 django-summernote==0.8.20.0
 psycopg2==2.9.10
 sqlparse==0.5.2
