@@ -5,25 +5,81 @@
 
 {% block content %}
 
-<section class="row">
-    <div class="col-12">
-        <div class="image-container">
-            <img src="{% static 'images/about/event.jpg' %}" class="img-fluid" alt="A plate with food image">
+<div class="container my-5">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-4">
+        <div class="col-12 text-center mt-4">
+            <h2 class="display-4 fw-bold">About</h2>
+            <p class="lead">Welcome to our blog! We share insights, stories, and updates about our journey and topics that inspire us.</p>
+        </div>
+    </div>
+    <!-- Overlay Section with Image -->
+    <section class="row my-5">
+        <div class="col-12">
+            <div class="position-relative text-center">
+                <!-- Hero Image -->
+                <img src="{% static 'images/about/event.jpg' %}" class="img-fluid rounded shadow-lg" alt="A plate with food image">
+                
+                <!-- Overlay Content -->
+                <div class="overlay-content position-absolute top-50 start-50 translate-middle text-white bg-dark bg-opacity-50 p-4 rounded">
+                    <p class="fs-4 fw-bold">
+                        Explore upcoming events, <br>
+                        Browse through photos, <br>
+                        Read reviews from our valued guests.
+                    </p>
+                    <p>
+                        See what makes our space unique and get inspired for your next visit!
+                    </p>
+                    <p>
+                        Not a user yet? <a href="{% url 'account_signup' %}" class="text-warning fw-bold">Sign up</a> or 
+                        <a href="{% url 'login' %}" class="text-warning fw-bold">login</a> to book and enjoy a delightful experience!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p class="overlay-content"> <br> Explore upcoming events,
-    <br> Browse through photos, 
-    <br> Read reviews from our valued guests.
-
-<br>See what makes our space unique and get inspired for your next visit!
-<br>
-<br>Not a user yet? Sign up or login to book and enjoy a delightful experience!</p>
+    <!-- Posts Section -->
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-4">Latest Posts</h3>
+            {% if object_list %}
+                <div class="list-group">
+                    {% for post in object_list %}
+                        <a href="{% url 'post_expand' post.slug %}" class="list-group-item list-group-item-action">
+                            <h5 class="mb-1">{{ post.title }}</h5>
+                            <small class="text-muted">Published on {{ post.created_date }}</small>
+                        </a>
+                    {% endfor %}
+                </div>
+                <!-- Pagination -->
+                <nav class="mt-4">
+                    {% if is_paginated %}
+                        <ul class="pagination justify-content-center">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            <li class="page-item disabled">
+                                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                            </li>
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </nav>
+            {% else %}
+                <p class="text-muted">No posts available at the moment.</p>
+            {% endif %}
+        </div>
+    </div>
 </div>
-</div>
-</section> 
-
- {% include 'about_app/post_list.html' %}
-
-
-
-<!-- Additional content for the About page -->
 {% endblock %}
