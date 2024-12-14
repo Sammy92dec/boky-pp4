@@ -47,13 +47,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'bok_app',
     'about_app',
     'booking_app',
     'django_summernote', # Summernote integration
+    'phonenumber_field',
     'food_drink',
     'crispy_forms',
     'crispy_bootstrap5',
+    'rangefilter',
 ]
 
 SITE_ID = 1

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8 mt-5 mb-5">
+            <h1 class="text-center">Booking Successful</h1><hr>
+        </div>
+    </div>
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mt-5 mb-5 p-5 bg-darker rounded">
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <h2>Awaiting Confirmation</h2><br>
+                        <hr>
+                        <p>Your booking will be confirmed,check My bookings, <a href="{% url 'booking_list' %}" class="booking-success-button">click</a></p><br>
+                        <p>Visit food menu, <a href="{% url 'foods' %}" class="booking-success-button">click</a><p>
+                        <p>Visit drinks menu, <a href="{% url 'drinks' %}" class="booking-success-button">click</a><p>
+                        <p>Return home, <a href="{% url 'home' %}" class="booking-success-button">click</a><p><br>
+                        <p>We look forward to seeing you!</p>
+                         
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{%endblock%}

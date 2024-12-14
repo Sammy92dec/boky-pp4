@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - Post Details{% endblock %}
+
+{% block content %}
+<section>
+    <!-- Post Details Section -->
+    <h1>{{ post.title }}</h1>
+    <p><strong>By {{ post.author }}</strong> | Published on {{ post.created_date|date:"F j, Y" }}</p>
+    <div>
+        <p>{{ post.content }}</p>
+    </div>
+</section>
+
+<section>
+    <!-- Comments Section -->
+    <h2>Comments</h2>
+    {% if comments %}
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <p><strong>{{ comment.name }}</strong> ({{ comment.created_date|date:"F j, Y" }})</p>
+                    <p>{{ comment.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No comments yet. Be the first to comment!</p>
+    {% endif %}
+</section>
+
+{% if user.is_authenticated %}
+<section>
+    <!-- Comment Form Section -->
+    <h3>Leave a Comment</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </form>
+</section>
+{% else %}
+    <p>You must be logged in to leave a comment.</p>
+{% endif %}
+{% endblock %}

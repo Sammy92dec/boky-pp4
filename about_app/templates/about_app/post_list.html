@@ -1,28 +1,45 @@
+{% extends "base.html" %}
 {% load static %}
 
+{% extends "base.html" %}
+
+{% block title %}Published Posts{% endblock %}
+
 {% block content %}
-<div class="mt-2">
-    {% if user.is_authenticated %}
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="title" placeholder="Post title" required><br>
-        <textarea name="content" placeholder="Write your post" required></textarea>
-        <br>
-        <button type="submit">Post</button>
-    </form>
+<section>
+    <h1>{{ title }}</h1>
+    <p>Welcome to our blog! Below are the most recent posts.</p>
 
-    {% for post in posts %}
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
-    <p>By: {{ post.author }}</p>
-{% empty %}
-    <p>No posts available.</p>
-{% endfor %}
+    <div class="post-list">
+        {% for post in posts %}
+            <div class="post-item">
+                <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
+                <p><strong>By {{ post.author }}</strong> | Published on {{ post.created_date|date:"F j, Y" }}</p>
+                <p>{{ post.excerpt }}</p>
+                <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn-primary">Read More</a>
+            </div>
+        {% empty %}
+            <p>No posts available at the moment. Please check back later!</p>
+        {% endfor %}
+    </div>
 
-    {% else %}
-    <p>Login to post or Like.</p>
-    
-    {% endif %}
-</div>
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ posts.previous_page_number }}">previous</a>
+            {% endif %}
 
+            <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">next</a>
+                <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</section>
 {% endblock %}

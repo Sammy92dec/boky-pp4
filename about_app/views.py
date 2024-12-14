@@ -3,21 +3,25 @@ from django.views import generic, View
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm
-
 
 def about(request):
     return render(request, 'about_app/about.html')
+    
+def about_with_posts(request):
+    """
+    About page with a list of published posts.
+    """
+    posts = Post.objects.filter(status=1).order_by('-created_date')  # Fetch published posts
+    paginator = Paginator(posts, 4)  # Paginate with 4 posts per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
-class PublishedPosts(generic.ListView):
-    """
-    View for listing published posts.
-    """
-    model = Post
-    template_name = 'about_app/about.html'
-    context_object_name = 'posts'
-    paginate_by = 4
+    return render(request, 'about_app/about.html', {
+        'posts': page_obj,  # Paginated posts
+        'title': 'About and Posts',
+    })
 
     def get_context_data(self, **kwargs):
         """
@@ -41,7 +45,7 @@ class PostExpand(View):
         comments = post.comments.filter(approved=True).order_by('-created_date')
 
         return render(
-            request, 'about_app/about.html',
+            request, 'about_app/post_detail.html',
             {
                 'post': post,
                 'comments': comments,

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8 mt-5 mb-5">
+            <h1 class="text-center">Change of Plans?</h1><hr>
+        </div>
+    </div>
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-5">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 p-5 bg-darker rounded booking-card">
+                        <!-- Display if user is not logged in -->
+                        {% if not user.is_authenticated %}
+                        <h2>Login required</h2>
+                        <p>Please login to edit bookings</p>
+                        <button class="btn btn-success" type="submit"><a href="{% url 'account_login' %}">Go to Login
+                                Page</a></button>
+                        {% else %}
+                        <!-- Display form if user is logged in-->
+                        {% if user.is_authenticated and user == booking.user %}
+                        <h2>Edit Booking</h2>
+                        <form action="{% url 'edit_booking' booking.pk %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div>
+                                {{ form|crispy }}
+                            </div>
+                            <div>
+                                <button class="btn btn-success" type="submit">Update</button>
+                            </div>
+                        </form>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

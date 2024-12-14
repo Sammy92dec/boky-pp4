@@ -6,23 +6,24 @@
 {% block content %}
 
 <div class="container my-5">
-    <!-- Hero Section -->
+   
     <div class="row align-items-center mb-4">
         <div class="col-12 text-center mt-4">
+            <!-- About Section -->
             <h2 class="display-4 fw-bold">About</h2>
             <p class="lead">Welcome to our blog! We share insights, stories, and updates about our journey and topics that inspire us.</p>
         </div>
     </div>
     <!-- Overlay Section with Image -->
-    <section class="row my-5">
+    <section class="row">
         <div class="col-12">
             <div class="position-relative text-center">
                 <!-- Hero Image -->
                 <img src="{% static 'images/about/event.jpg' %}" class="img-fluid rounded shadow-lg" alt="A plate with food image">
-                
+               
                 <!-- Overlay Content -->
-                <div class="overlay-content position-absolute top-50 start-50 translate-middle text-white bg-dark bg-opacity-50 p-4 rounded">
-                    <p class="fs-4 fw-bold">
+                <div class="overlay-content">
+                    <p>
                         Explore upcoming events, <br>
                         Browse through photos, <br>
                         Read reviews from our valued guests.
@@ -30,10 +31,7 @@
                     <p>
                         See what makes our space unique and get inspired for your next visit!
                     </p>
-                    <p>
-                        Not a user yet? <a href="{% url 'account_signup' %}" class="text-warning fw-bold">Sign up</a> or 
-                        <a href="{% url 'login' %}" class="text-warning fw-bold">login</a> to book and enjoy a delightful experience!
-                    </p>
+                    
                 </div>
             </div>
         </div>

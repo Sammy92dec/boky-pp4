@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-8 mt-5 mb-5">
+            <h1 class="text-center">Need to Cancel?</h1><hr>
+        </div>
+    </div>
+<section>
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-5">
+                <h2>Are you sure?:</h2>
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <!-- Display if user is not logged in -->
+                        {% if not user.is_authenticated %}
+                        <h2>Login required</h2>
+                        <p>Please login to cancel bookings</p>
+                        <button class="btn btn-success" type="submit"><a href="{% url 'login.html' %}">Go to Login
+                                Page</a></button>
+                        {% else %}
+                        <!-- Display form if user is logged in-->
+                        {% if user.is_authenticated and user == booking.user %}
+                        <h3 class="card-title">{{ booking.name }}</h3>
+                        <p class="card-subtitle mb-2 text-muted">{{ booking.requested_date }} at
+                            {{ booking.requested_time }}</p><br>
+                        <p class="card-subtitle mb-2">Booking status: {{ booking.status }}.</p>
+                        <p class="card-text">No. of Guests: {{ booking.guest_count }}.</p>
+                        <p class="card-text">Table: {{booking.table}}</p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit">YES</button>
+                            <a href="{% url 'booking_list' %}" class="btn btn-secondary">Return</a>
+                        </form>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

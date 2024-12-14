@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+    <div class="container my-5">
+        <div class="row justify-content-center mt-3">
+            <!-- Display if user is not logged in -->
+            {% if not user.is_authenticated %}
+            <p>Please login</p>
+            <button class="btn btn-success" type="submit"><a href="{% url 'login.html' %}">Go to Login
+                    Page</a></button>
+            {% else %}
+            <h1>My Bookings:</h1><hr>
+            <p>If you just booked, Here is were you will see confirmations.You can reschdule and cancel here.</p>
+             {% for booking in booking_page %}
+            <div class="col-md-5">
+                <div class="card mb-5">
+                    <div class="card-body bg-darker grow booking-card">
+                        <h2 class="card-title">{{ booking.name }}</h2>
+                        <p class="card-subtitle mb-2 text-muted">{{ booking.requested_date }} at
+                            {{ booking.requested_time }}</p><br>
+                        <p class="card-subtitle mb-2">Booking status: {{ booking.status }}.</p>
+                        <p class="card-text">No. of Guests: {{ booking.guest_count }}.</p>
+                        <p class="card-text">Table: {{booking.table}}</p>
+                        <!-- If booking is expired edit and cancel button will be replaced with an expired button -->
+                        {% if booking.status == 'booking expired' %}
+                        <a href="#" class="btn btn-danger">Expired</a>
+                        {% else %}
+                        <a href="{% url 'edit_booking' booking.pk %}" class="btn btn-success">Edit</a>
+                        <a href="{% url 'cancel_booking' booking.pk %}" class="btn btn-danger">Cancel</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+
+    <!-- pagination -->
+    <div class="row d-flex my-5 justify-content-center text-center">
+
+        {% if booking_page.has_previous %}
+
+        <a href="?page=1">&laquo First</a>
+        <a href="?page={{ booking_page.previous_page_number }}">Previous</a>
+        
+        {% endif %}
+        Page {{ booking_page.number }} of {{booking_page.paginator.num_pages }}
+
+        {% if booking_page.has_next %}
+
+        <a href="?page={{ booking_page.next_page_number }}">Next</a>
+        <a href="?page={{ booking_page.paginator.num_pages }}">Last &raquo</a>
+
+        {% endif %}
+    </div>
+</section>
+
+{%endblock%}
