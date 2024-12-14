@@ -51,15 +51,14 @@
                           </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'reservations' %}">Book a Table</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'booking_list' %}">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">

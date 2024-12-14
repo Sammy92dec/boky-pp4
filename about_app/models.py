@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
-# from cloudinary.models import CloudinaryField
+from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
 STATUS = ((0, 'Draft'), (1, 'Posted'))
@@ -29,10 +29,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=now)
     updated_date = models.DateTimeField()
     content = models.TextField()
-    # featured_image = CloudinaryField(
-    #    'image',
-    #    default='placeholder'
-    #    )
+    featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
 

@@ -48,6 +48,15 @@
                             <h5 class="mb-1">{{ post.title }}</h5>
                             <small class="text-muted">Published on {{ post.created_date }}</small>
                         </a>
+                        <div class="image-container">
+                            {% if "placeholder" in post.featured_image.url %}
+                            <img class="card-img-top" src="{% static 'images/default.jpg' %}"
+                              alt="placeholder image">
+                            {% else %}
+                            <img class="card-img-top" src=" {{ post.featured_image.url }}"
+                              alt="{{ post.title }}">
+                            {% endif %}
+                            <div class="image-flash">            
                     {% endfor %}
                 </div>
                 <!-- Pagination -->
