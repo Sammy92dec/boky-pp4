@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Comment
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Edit Comment</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Comment</button>
+    </form>
+
+    <hr>
+    <a href="{% url 'event_view' %}" class="btn btn-secondary">Back to Events</a>
+</div>
+{% endblock %}

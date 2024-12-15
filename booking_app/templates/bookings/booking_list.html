@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -7,10 +8,12 @@
         <div class="row justify-content-center mt-3">
             <!-- Display if user is not logged in -->
             {% if not user.is_authenticated %}
-            <p>Please login</p>
-            <button class="btn btn-success" type="submit"><a href="{% url 'login.html' %}">Go to Login
-                    Page</a></button>
+                <h3>Login Required</h3>
+                <p>Please log in to view your bookings.</p>
+                <a href="{% url 'account_login' %}" class="btn btn-primary">Go to Login Page</a>
             {% else %}
+                <!-- Display if user is logged in -->
+
             <h1>My Bookings:</h1><hr>
             <p>If you just booked, Here is were you will see confirmations.You can reschdule and cancel here.</p>
              {% for booking in booking_page %}

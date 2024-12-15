@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 
 
-@login_required
+
+
 def event_view(request):
     if request.method == 'POST':
         # Handle EventPost form submission
@@ -27,6 +28,7 @@ def event_view(request):
     else:
         post_form = EventPostForm()
         comment_form = EventCommentForm()
+        
 
     # Prefetch related comments to optimize query
     event_posts = EventPost.objects.prefetch_related('event_comments').order_by('-created_at')
@@ -70,20 +72,29 @@ def add_comment(request, event_post_id):
 
     return render(request, 'event.html', {'comment_form': comment_form, 'event_post': event_post})
 
+@login_required
 def edit_comment(request, comment_id):
+    # Get the comment to edit
     comment = get_object_or_404(EventComment, id=comment_id)
-    if request.user != comment.author:
-        return redirect('event_view')  # or show error message
 
+    # Ensure that the current user is the author of the comment
+    if comment.author != request.user:
+        return redirect('event_view')  # Redirect to the event page if the user is not the author
+
+    # Handle the form submission
     if request.method == 'POST':
-        form = EventCommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            form.save()
+        comment_form = EventCommentForm(request.POST, instance=comment)
+        if comment_form.is_valid():
+            comment_form.save()  # Save the updated comment
             return redirect('event_view')
     else:
-        form = EventCommentForm(instance=comment)
+        comment_form = EventCommentForm(instance=comment)  # Populate the form with the existing comment data
 
-    return render(request, 'event_post/edit_comment.html', {'form': form})
+    # Render the edit page
+    return render(request, 'event_post/edit_comment.html', {
+        'comment_form': comment_form,
+        'comment': comment
+    })
 
 @login_required
 def like_post(request, event_post_id):
