@@ -97,7 +97,7 @@
     <p class="overlay-content">Welcome to the Sam's Bistro! 
     <br>The dishes are prepared with ingredients of the highest quality.
     <br>Sam's Bistro is also well known for its yummy dessert, which are the perfect plan for cozy evenings.
-    <br>Warm drinks, cold beverages, and alcoholic options complements perfectly our <a href="{% url 'foods' %}">Menu.</a></p>
+    <br>Warm drinks, cold beverages, and alcoholic options complements perfectly our <a class="badge badge-dark" href="{% url 'foods' %}">Menu.</a></p>
     </div>
     </div>
     </section>
@@ -114,7 +114,7 @@
          <br> Browse through photos, 
          <br> Read reviews from our valued guests.
 
-    <br>See what makes our space unique and get inspired for your next visit! *ABOUT*</p>
+    <br>See what makes our space unique and get inspired for your next visit! <a class="badge badge-dark" href="{% url 'about' %}">About</a></p>
     
     </div>
     </div>
@@ -127,7 +127,7 @@
             <div class="image-container">
 <!-- CReadit Mariia Siurtukova / Getty Images-->
 <img src="{% static 'images/home-page/home-drink.jpg' %}" class="img-fluid" alt="table with empty glasses and plates image">
-        <p class="overlay-content">Not a user yet? Sign up or login to book and enjoy a delightful experience! *MENU*</p> 
+        <p class="overlay-content">Not a user yet? Sign up to book and enjoy a delightful experience! <a class="badge badge-dark" href="{% url 'account_signup' %}">Register</a></p> 
 
         </div>
         </div>

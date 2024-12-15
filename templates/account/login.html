@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-success text-white min-vh-100">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-12 col-md-6">
+            <h1 class="text-center mb-4">Sign In</h1>
+            
+            <p class="text-center mb-4">Welcome back . To book a table,Share a post, leave a comment or like a post, please log in. If you have not created an account yet, <a href="{{ signup_url }}" class="link text-white">sign up</a> first.</p>
+            
+            <form method="POST" action="{% url 'account_login' %}" class="p-4 bg-light rounded shadow-sm">
+                {% csrf_token %}
+                {{ form|crispy }}
+                
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                
+                <button class="btn btn-secondary w-100 mb-2" type="submit">Sign In</button>
+                <a class="d-block text-center" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
