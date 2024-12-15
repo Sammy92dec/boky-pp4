@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Event Posts
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Post an Event</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ post_form.as_p }}
+        <button type="submit" name="post_form">Upload</button>
+    </form>
+
+    <hr>
+
+    <h1>Event Posts</h1>
+    {% for event_post in event_posts %}
+        <div class="post">
+            <h2>{{ event_post.author.username }}'s Event</h2>
+            <img src="{{ event_post.image.url }}" alt="Event Image">
+            <p>{{ event_post.caption }}</p>
+            <p>Posted on: {{ event_post.created_at }}</p>
+
+            <!-- Like Button -->
+            <div class="like-button">
+                <a href="{% url 'like_post' event_post.id %}" class="btn btn-light">
+                    <i class="fa fa-heart" style="color: red;"></i> Like
+                </a>
+                <span>{{ event_post.likes.count }} likes</span>
+            </div>
+
+            {% if event_post.author == request.user %}
+                <!-- Edit Post Button -->
+                <a href="{% url 'edit_event' event_post.id %}" class="btn btn-primary">Edit Post</a>
+            {% endif %}
+
+            <h3>Comments</h3>
+            {% for comment in event_post.event_comments.all %}
+                <div class="comment">
+                    <p><strong>{{ comment.author.username }}:</strong> {{ comment.content }}</p>
+                    {% if comment.author == request.user %}
+                        <!-- Edit Comment Button -->
+                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-warning">Edit Comment</a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No comments yet. Be the first to comment!</p>
+            {% endfor %}
+
+            <!-- Comment Form -->
+            <form method="post" action="{% url 'add_comment' event_post.id %}">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit">Add Comment</button>
+            </form>
+        </div>
+        <hr>
+    {% endfor %}
+</div>
+{% endblock %}

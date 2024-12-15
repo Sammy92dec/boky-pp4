@@ -58,6 +58,9 @@
                         <a class="nav-link" href="{% url 'booking_list' %}">Bookings</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'event_view' %}">Events</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     {% if user.is_authenticated %}

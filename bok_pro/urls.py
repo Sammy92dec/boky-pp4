@@ -29,7 +29,8 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('accounts/', include('django.contrib.auth.urls')),  # Login/Logout
     path('summernote/', include('django_summernote.urls')),    
-    path('menu/', include('food_drink.urls')),# Routes to food_drink
+    path('menu/', include('food_drink.urls')),
+    path('event/', include('events.urls')),
     
 ]
 
