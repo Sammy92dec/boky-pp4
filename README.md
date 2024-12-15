@@ -115,19 +115,19 @@ The site was constantly tested during the process of creating the site in the Gi
 | I can use the menu and navigate through the pages   | X | X | Click on items
 | I can see events, posts and comments made by users  | X | X | Can only view as guest
 | I can see the Home Page   | X | X | Click on items
-| I can see the Registration Page  | X | X | Click on items and this disappears from the nav bar once registered
+| I can see the Registration Page  | X |  | Click on items and this disappears from the nav bar once registered
 | I can see the Bookings Page |   | X | Need to be authorized to see
 | I can see the My Bookings page  |  | X | Need to be authorized to see
 | I can see the Sign Up Page | X | X | Click on items
 | I can see the Login/Logout Pages | X | X | You see one or the other depending on if you are logged in or logged out
-| I can complete the Registration form  | X | X | Click on items
+| I can complete the Registration form  | X |  | Click on items
 | I can complete the Sign In form  | X | X | Click on items
 | I can make a booking for a particular time and date booked |  | X | Need to be authorized to do
 | I can delete a particular booking,Post and comment made in the event page |   | X | Need to be authorized to do and be main user
 | I can edit a particular booking,Post and comment made in the event page |   | X | Need to be authorized to do and be main user
 | I can see if I have made a booking successfully  |   | X | Need to be authorized to do
 | I can see if I have already made a booking for a session  |  | X | Need to be authorized to do
-| 
+
 
 ### Bugs
 - No known bugs remaining
@@ -141,95 +141,95 @@ The site was constantly tested during the process of creating the site in the Gi
 
 ## Deployment
 
-The deployment process for Sam's Bistro involves multiple platforms, including GitHub, Gitpod, Heroku,  CI Postgresql, and Cloudinary. Below is a detailed explanation of how each platform fits into the deployment process along with the respective URLs for the platforms and services used in deploying and managing the Fit and Fine DRF API.
+- The deployment process for Sam's Bistro involves multiple platforms, including GitHub, Gitpod, Heroku,  CI Postgresql, and Cloudinary. Below is a detailed explanation of how each platform fits into the deployment process along with the respective URLs for the platforms and services used in deploying and managing the Fit and Fine DRF API.
 
 ### 1. GitHub
 
-**Purpose:** 
-- Version control and collaboration.
+- **Purpose:** 
+  - Version control and collaboration.
 
-**Process:**
-- The source code for Sam's Bistro is hosted on GitHub. Developers can collaborate, track changes, and manage different versions of the application.
-- The repository is used as the central hub for the project, where all updates and changes are committed and pushed.
+- **Process:**
+  - The source code for Sam's Bistro is hosted on GitHub. Developers can collaborate, track changes, and manage different versions of the application.
+  - The repository is used as the central hub for the project, where all updates and changes are committed and pushed.
 
-**URL:**
-- [GitHub Repository](https://github.com)
+- **URL:**
+  - [GitHub Repository](https://github.com)
 
 ### 2. Gitpod
 
-**Purpose:**
-- Online IDE for development.
+- **Purpose:**
+  - Online IDE for development.
 
-**Process:**
-- Gitpod is used for development and testing. It provides a cloud-based development environment that is pre-configured with the necessary tools and dependencies.
-- Developers can open the GitHub repository in Gitpod and start coding immediately without worrying about local setup.
+- **Process:**
+  - Gitpod is used for development and testing. It provides a cloud-based development environment that is pre-configured with the necessary tools and dependencies.
+  - Developers can open the GitHub repository in Gitpod and start coding immediately without worrying about local setup.
 
-**URL:**
-- [Gitpod Workspace](https://gitpod.io/)
+- **URL:**
+  - [Gitpod Workspace](https://gitpod.io/)
 
 ### 3. Heroku
 
-**Purpose:**
-- Platform as a Service (PaaS) for hosting the application.
+- **Purpose:**
+  - Platform as a Service (PaaS) for hosting the application.
 
-**Process:**
-- The Bistro application is deployed on Heroku. Heroku manages the server, deployment, and scaling of the application.
-- Continuous deployment is set up from the GitHub repository to Heroku, ensuring that any changes pushed to the main branch are automatically deployed to the live site.
+- **Process:**
+  - The Bistro application is deployed on Heroku. Heroku manages the server, deployment, and scaling of the application.
+  - Continuous deployment is set up from the GitHub repository to Heroku, ensuring that any changes pushed to the main branch are automatically deployed to the live site.
 
-**URL:**
-- [Heroku Dashboard](https://dashboard.heroku.com/)
+- **URL:**
+  - [Heroku Dashboard](https://dashboard.heroku.com/)
 
-**Setting up on Heroku:**
-1. Create a new app on Heroku.
-2. Connect the Heroku app to the GitHub repository.
-3. Set up Config Vars in Heroku including `DATABASE_URL`, `SECRET_KEY`, `CLOUDINARY_URL`, `ALLOWED_HOST`  and `DISABLE_COLLECTSTATIC=1` (this is temporary and can be removed for the final deployment).
-4. Deploy the main branch using the Heroku dashboard or enable automatic deployments for every push to the main branch.
+- **Setting up on Heroku:**
+  1. Create a new app on Heroku.
+  2. Connect the Heroku app to the GitHub repository.
+  3. Set up Config Vars in Heroku including `DATABASE_URL`, `SECRET_KEY`, `CLOUDINARY_URL`, `ALLOWED_HOST`  and `DISABLE_COLLECTSTATIC=1` (this is temporary and can be removed for the final deployment).
+  4. Deploy the main branch using the Heroku dashboard or enable automatic deployments for every push to the main branch.
 
-**For deployment, Heroku needs two additional files in order to deploy properly:**
-- `requirements.txt`
-- `Procfile`
+- **For deployment, Heroku needs two additional files in order to deploy properly:**
+    - `requirements.txt`
+    - `Procfile`
 
-You can install this project's requirements (where applicable) using:
-- `pip install -r requirements.txt`
+- You can install this project's requirements (where applicable) using:
+  - `pip install -r requirements.txt`
 
-If you have your own packages that have been installed, then the requirements file needs to be updated using:
-- `pip freeze --local > requirements.txt`
+- If you have your own packages that have been installed, then the requirements file needs to be updated using:
+  - `pip freeze --local > requirements.txt`
 
-**The Procfile can be created with the following command:**
-- `echo web: gunicorn app_name.wsgi > Procfile`
+- **The Procfile can be created with the following command:**
+  - `echo web: gunicorn app_name.wsgi > Procfile`
 
-Then add these lines to Procfile
+- Then add these lines to Procfile
 
-`web: gunicorn app_name.wsgi`
+  - `web: gunicorn app_name.wsgi`
 
-`release: python manage.py makemigrations && python manage.py migrate`
+  - `release: python manage.py makemigrations && python manage.py migrate`
 
-Replace `app_name` with the name of your primary Django app name; the folder where `settings.py` is located.
+- Replace `app_name` with the name of your primary Django app name; the folder where `settings.py` is located.
 
 ### 4.  Code Insistute Postgresql
 
-**Purpose:**
-- Database as a Service for PostgreSQL.
+- **Purpose:**
+  - Database as a Service for PostgreSQL.
 
-**Process:**
-- Code Insistute provided the PostgreSQL database for the application. The database is used to store all application data, including user information, posts, comments, and other relevant data.
-- Heroku is configured to use the postgresql database through environment variables.
+- **Process:**
+  - Code Insistute provided the PostgreSQL database for the application. The database is used to store all application data, including user information, posts, comments, and other relevant data.
+  - Heroku is configured to use the postgresql database through environment variables.
 
 To obtain your own PostgreSQL Database from Code insistute you need to be a student and they will provide database linked to your student email, where they will email you database URL.
 
 ### 5. Cloudinary
 
-**Purpose:**
-- Media management and storage.
+- **Purpose:**
+  - Media management and storage.
 
-**Process:**
-- Cloudinary is used for storing and managing media files, such as images and videos uploaded by users.
-- The application is configured to upload media files directly to Cloudinary, where they are stored and served.
+- **Process:**
+  - Cloudinary is used for storing and managing media files, such as images and videos uploaded by users.
+  - The application is configured to upload media files directly to Cloudinary, where they are stored and served.
 
-**URL:**
-- [Cloudinary Dashboard](https://cloudinary.com/users/login)
+- **URL:**
+  - [Cloudinary Dashboard](https://cloudinary.com/users/login)
 
-**Integration:**
+- **Integration:**
 1. Set up a Cloudinary account.
 2. Configure the Cloudinary settings in the Django settings file with the API keys provided by Cloudinary.
 3. Use Django’s storage backend for Cloudinary to handle media uploads.
