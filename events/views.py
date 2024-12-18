@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import EventPost, EventComment, Like
 from .forms import EventPostForm, EventCommentForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
 
 
 
@@ -104,4 +105,15 @@ def like_post(request, event_post_id):
         Like.objects.create(user=request.user, event_post=event_post)
     else:
         Like.objects.filter(user=request.user, event_post=event_post).delete()
-    return redirect('event_view')  # or wherever you want to redirect after liking
+    return redirect('event_view')   # or wherever you want to redirect after liking
+
+@login_required
+def delete_event(request, event_post_id):
+    event_post = get_object_or_404(EventPost, id=event_post_id)
+    # Ensure the user is the author
+    if request.user != event_post.author:
+        return HttpResponseForbidden("You are not allowed to delete this post.")
+
+    # Delete the post
+    event_post.delete()
+    return redirect('event_view')

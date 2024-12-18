@@ -7,4 +7,5 @@ urlpatterns = [
     path('like/<int:event_post_id>/', views.like_post, name='like_post'),
     path('edit-event/<int:event_post_id>/', views.edit_event, name='edit_event'),
     path('edit-comment/<int:comment_id>/', views.edit_comment, name='edit_comment'),
+    path('delete-event/<int:event_post_id>/', views.delete_event, name='delete_event'),
 ]

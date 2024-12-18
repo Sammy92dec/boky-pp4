@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from about_app import views as about_views
 from booking_app import views as booking_views
+from django.contrib.auth import views as auth_views
 from .import views 
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     path('menu/', include('food_drink.urls')), # Routes to menus
     path('event/', include('events.urls')), # Routes to event posts
     path('admin/', admin.site.urls),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
 ]
 
 
