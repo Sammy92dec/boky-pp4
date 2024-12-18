@@ -7,9 +7,6 @@ from django.utils.text import slugify
 STATUS = ((0, 'Draft'), (1, 'Posted'))
 
 
-
-
-
 class Post(models.Model):
     # Model for posts
     title = models.CharField(
