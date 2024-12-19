@@ -6,36 +6,36 @@ from django.http import HttpResponseForbidden
 
 
 def event_view(request):
-    if request.method == 'POST':
-        # Handle EventPost form submission
+    post_form = None
+    comment_form = None
+    event_posts = EventPost.objects.all()
+
+    if request.method == 'POST' and request.user.is_authenticated:
         if 'post_form' in request.POST:
             post_form = EventPostForm(request.POST, request.FILES)
             if post_form.is_valid():
-                post_form.instance.author = request.user
-                post_form.save()
-                return redirect('event_view')
-                
-        # Handle EventComment form submission
+                event_post = post_form.save(commit=False)
+                event_post.author = request.user
+                event_post.save()
+                return redirect('event_post_list')
         elif 'comment_form' in request.POST:
-            comment_form = EventCommentForm(request.POST)
+            comment_form = CommentForm(request.POST)
             if comment_form.is_valid():
-                comment_form.instance.author = request.user
-                comment_form.instance.event_post_id = request.POST.get('event_post_id')  # Associate comment with post
-                comment_form.save()
+                post = EventPost.objects.get(id=request.POST.get('post_id'))
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.post = post
+                comment.save()
                 return redirect('event_view')
     else:
         post_form = EventPostForm()
-        comment_form = EventCommentForm()
-        
-
-    # Prefetch related comments to optimize query
-    event_posts = EventPost.objects.prefetch_related('event_comments').order_by('-created_at')
-
+    
     return render(request, 'event_post/event.html', {
-        'post_form': post_form,
-        'comment_form': comment_form,
         'event_posts': event_posts,
+        'post_form': post_form,
+        'comment_form': comment_form
     })
+    
 
 @login_required
 def edit_event(request, post_id):
@@ -120,3 +120,16 @@ def delete_comment(request, comment_id):
         return redirect('event_view')  # Redirect to a page showing the event posts
     else:
         return redirect('event_view')  # or return an error message
+
+@login_required
+def create_event_post(request):
+    if request.method == "POST":
+        form = EventPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            event_post = form.save(commit=False)
+            event_post.author = request.user
+            event_post.save()
+            return redirect('event_view')  # Redirect to the post list view
+    else:
+        form = EventPostForm()
+    return redirect('event_view')

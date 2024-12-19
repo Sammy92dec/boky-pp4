@@ -2,6 +2,29 @@
 
 {% block content %}
 <div class="mt-5">
+
+
+      <!-- Form to upload a new post -->
+      {% if user.is_authenticated %}
+      <h2>Upload New Event Post</h2>
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="caption">Caption:</label>
+              <textarea name="caption" id="caption" rows="3" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+              <label for="image">Event Image:</label>
+              <input type="file" name="image" id="image" accept="image/*" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Event</button>
+      </form>
+  {% else %}
+      <p><a href="{% url 'account_login' %}">Log in</a> to upload an event post.</p>
+  {% endif %}
+
+  <hr>
+  
     <h1>Event Posts</h1>
     {% for event_post in event_posts %}
         <div class="post">

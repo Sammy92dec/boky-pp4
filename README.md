@@ -7,9 +7,8 @@ Beyond table bookings, It provides features for exploring upcoming events at the
 The backend is implemented using Django Rest Framework API. It is designed to support both web and future mobile applications providing robust and secure APIs for the frontend application, ensuring seamless integration and future scalability.
 
 
-LIVE LINK HERE
+LIVE LINK : https://boky-pp4-d51abfaa1de4.herokuapp.com/
 
-RESPONSIVE PICTURE HERE
 
 ## Table of contents
 
@@ -18,17 +17,6 @@ RESPONSIVE PICTURE HERE
   - [Project Overview](#project-overview)
   - [Objectives](#objectives)
   - [Timeline](#timeline)
-- [Data Models](#data-models)
-  - [1. Profiles Model](#1-profiles-model)
-  - [2. Posts Model](#2-posts-model)
-  - [3. Comments Model](#3-comments-model)
-  - [4. Daily Routines Model](#4-daily-routines-model)
-  - [5. Challenges Model](#5-challenges-model)
-  - [6. Collaborate Model](#6-collaborate-model)
-  - [7. Likes Model](#7-likes-model)
-  - [8. Follower Model](#8-follower-model)
-- [API Endpoints](#api-endpoints)
-  - [Example Requests and Responses](#example-requests-and-responses)
 - [Frameworks, Libraries, and Dependencies](#frameworks-libraries-and-dependencies)
   - [Django Framework and Extensions](#django-framework-and-extensions)
   - [Database Management](#database-management)
@@ -41,9 +29,6 @@ RESPONSIVE PICTURE HERE
   - [Browser Testing](#browser-testing)
   - [Bugs](#bugs)
 - [Validation](#validation)
-  - [HTML Validation](#html-validation)
-  - [CSS Validation](#css-validation)
-  - [Python Validation](#python-validation)
   - [Lighthouse](#lighthouse)
 - [Deployment](#deployment)
   - [1. GitHub](#1-github)
@@ -121,22 +106,7 @@ Ensure secure password handling and authentication processes.
 - Deploy the frontend application to a hosting service (e.g., Netlify, Vercel).
 - Write comprehensive documentation, including setup instructions, API documentation, and user guides.
 
-# Data Models
-### Profiles Model
-### Posts Model
-### Comments Model
-### Daily Routines Model
-### Challenges Model
-### Collaborate Model
-### Likes Model
-### Follower Model
-API Endpoints
-Example Requests and Responses
-
-
 # Frameworks, Libraries, and Dependencies
-
-## Frameworks, Libraries, and Dependencies
 
 The Fit&Fine project leverages a variety of frameworks, libraries, and dependencies to ensure robust functionality and performance. Below is a detailed list of the key components used:
 
@@ -248,14 +218,14 @@ The site was constantly tested during the process of creating the site in the Gi
 
 
 ### Bugs
-- No known bugs remaining
+- Heruko setup took a while but fixed with the help og a tutor.
 
 ## Validation
-### HTML Validation
-### CSS Validation
-### Python Validation
+
 ### Lighthouse
 
+<img src="static/images/readme-images/light house.png" width="350" title="hover text">
+  
 
 ## Deployment
 
