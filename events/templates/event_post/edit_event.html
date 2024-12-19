@@ -1,30 +1,26 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Edit Event
-{% endblock %}
+{% block title %}Edit Event{% endblock %}
 
 {% block content %}
 <div class="container my-5">
     <h1>Edit Event</h1>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data"> <!-- Important for image uploads -->
         {% csrf_token %}
-        {{ comment_form.as_p }}
+        {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Update Post</button>
     </form>
+
     {% if request.user == post.author %}
-    
-    <a href="{% url 'delete_event' post.id %}" 
-       class="btn btn-danger" 
-       onclick="return confirm('Are you sure you want to delete this post?');">
-       Delete
-    </a>
-    <a href="{% url 'edit_event' post.id %}" class="btn btn-primary">Edit</a>
-{% endif %}
-</div>
-{% endfor %}
+        <a href="{% url 'delete_event' post.id %}" class="btn btn-danger"
+           onclick="return confirm('Are you sure you want to delete this post?');">
+           Delete
+        </a>
+    {% endif %}
+
     <hr>
     <a href="{% url 'event_view' %}" class="btn btn-secondary">Back to Events</a>
 </div>
 {% endblock %}
+

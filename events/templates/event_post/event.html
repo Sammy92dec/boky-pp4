@@ -1,20 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Event Posts
-{% endblock %}
-
 {% block content %}
-<div class="container my-5">
-    <h1>Post an Event</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ post_form.as_p }}
-        <button type="submit" name="post_form">Upload</button>
-    </form>
-
-    <hr>
-
+<div class="mt-5">
     <h1>Event Posts</h1>
     {% for event_post in event_posts %}
         <div class="post">
@@ -22,41 +9,35 @@
             <img src="{{ event_post.image.url }}" alt="Event Image">
             <p>{{ event_post.caption }}</p>
             <p>Posted on: {{ event_post.created_at }}</p>
+            
 
-            {% for post in event_posts %}
-<div class="post">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.content }}</p>
-    <p>By {{ post.author }} on {{ post.created_at }}</p>
-    
-   
-            <!-- Like Button -->
+            <!-- Likes and possibly Edit button for the post -->
             <div class="like-button">
-                <a href="{% url 'like_post' event_post.id %}" class="btn btn-light">
-                    <i class="fa fa-heart" style="color: red;"></i> Like
-                </a>
+                <a href="{% url 'like_post' event_post.id %}" class="btn btn-light">Like</a>
                 <span>{{ event_post.likes.count }} likes</span>
             </div>
 
             {% if event_post.author == request.user %}
-                <!-- Edit Post Button -->
                 <a href="{% url 'edit_event' event_post.id %}" class="btn btn-primary">Edit Post</a>
             {% endif %}
 
             <h3>Comments</h3>
+            <!-- Comments loop -->
             {% for comment in event_post.event_comments.all %}
                 <div class="comment">
                     <p><strong>{{ comment.author.username }}:</strong> {{ comment.content }}</p>
                     {% if comment.author == request.user %}
-                        <!-- Edit Comment Button -->
-                        <a href="{% url 'edit_comment' comment.id %}" class="btn btn-warning">Edit Comment</a>
+                        <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger" 
+                           onclick="return confirm('Are you sure you want to delete this comment?');">
+                           Delete Comment
+                        </a>
                     {% endif %}
                 </div>
             {% empty %}
                 <p>No comments yet. Be the first to comment!</p>
             {% endfor %}
 
-            <!-- Comment Form -->
+            <!-- Comment form for adding a new comment -->
             <form method="post" action="{% url 'add_comment' event_post.id %}">
                 {% csrf_token %}
                 {{ comment_form.as_p }}
@@ -64,7 +45,6 @@
             </form>
         </div>
         <hr>
-    
-</div>
+    {% endfor %}
+</div>    
 {% endblock %}
-

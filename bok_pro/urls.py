@@ -10,7 +10,6 @@ urlpatterns = [
     path('', views.home, name='home'), # Routes to home
     path('booking/', include('booking_app.urls')), # Routes to booking table/reservatons
     path("accounts/", include("allauth.urls")),  # Allauth Authentication
-    path("accounts/", include("accounts.urls")),
     path('summernote/', include('django_summernote.urls')),    
     path('menu/', include('food_drink.urls')), # Routes to menus
     path('event/', include('events.urls')), # Routes to event posts

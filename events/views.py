@@ -5,9 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
 
-
-
-
 def event_view(request):
     if request.method == 'POST':
         # Handle EventPost form submission
@@ -17,7 +14,7 @@ def event_view(request):
                 post_form.instance.author = request.user
                 post_form.save()
                 return redirect('event_view')
-
+                
         # Handle EventComment form submission
         elif 'comment_form' in request.POST:
             comment_form = EventCommentForm(request.POST)
@@ -40,23 +37,18 @@ def event_view(request):
         'event_posts': event_posts,
     })
 
-def edit_event(request, event_post_id):
-    event_post = get_object_or_404(EventPost, id=event_post_id)
-    if request.user != event_post.author:
-        # You could redirect to the event page or display a message
-        return redirect('event_view')  # or show an error message
-    
+@login_required
+def edit_event(request, post_id):
+    post = get_object_or_404(EventPost, id=post_id, author=request.user)
     if request.method == 'POST':
-        form = EventPostForm(request.POST, request.FILES, instance=event_post)
+        form = EventPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('event_view')
+            return redirect('event_view')  # or wherever you want to go after editing
     else:
-        form = EventPostForm(instance=event_post)
-    
-    return render(request, 'event_post/edit_event.html', {'form': form})
+        form = EventPostForm(instance=post)
 
-
+    return render(request, 'event_post/edit_event.html', {'form': form, 'post': post})
 @login_required
 def add_comment(request, event_post_id):
     event_post = get_object_or_404(EventPost, id=event_post_id)
@@ -107,13 +99,24 @@ def like_post(request, event_post_id):
         Like.objects.filter(user=request.user, event_post=event_post).delete()
     return redirect('event_view')   # or wherever you want to redirect after liking
 
-@login_required
-def delete_event(request, event_post_id):
-    event_post = get_object_or_404(EventPost, id=event_post_id)
-    # Ensure the user is the author
-    if request.user != event_post.author:
-        return HttpResponseForbidden("You are not allowed to delete this post.")
 
-    # Delete the post
-    event_post.delete()
-    return redirect('event_view')
+@login_required
+def delete_event(request, post_id):
+    post = get_object_or_404(EventPost, id=post_id)
+    # Ensure only the author can delete the post
+    if post.author == request.user:
+        post.delete()
+        return redirect('event_view')  # Redirect back to event listing or wherever appropriate
+    else:
+        # If the user is not the author, you might want to show an error or just redirect
+        return redirect('event_view')
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(EventComment, id=comment_id)
+    # Ensure only the author can delete the comment
+    if comment.author == request.user:
+        comment.delete()
+        return redirect('event_view')  # Redirect to a page showing the event posts
+    else:
+        return redirect('event_view')  # or return an error message
