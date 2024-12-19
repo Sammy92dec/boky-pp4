@@ -1,0 +1,148 @@
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Teachers:ital,wght@0,400..800;1,400..800&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Defaults */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Kanit', sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+
+/* Header*/
+.navbar {
+    box-shadow: 1px -1px 7px 0 #00000061;
+}
+
+a.nav-link {
+    color: #a1a17e;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Kanit', sans-serif;
+}
+
+/* main */
+main {
+    flex: 1 0 auto;
+    background-color: white;
+}
+
+button {
+    margin: 0;
+    padding: 5px;
+}
+
+
+/* Logo */
+
+.logo {
+    font-family: 'Kanit', sans-serif;
+    font-size: x-large;
+}
+
+.logo-hero {
+    font-family: 'Kanit', sans-serif;
+    font-size: 10em;
+    color: white;   
+}
+
+img.logo {
+    width: 5rem;
+}
+
+.active {
+    font-weight: 400;
+    border-bottom: 2px;
+}
+
+/* images */
+
+
+.img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:white;
+    font-size: 1.5rem; 
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 10px;
+    
+}
+
+.overlay-content .btn {
+    margin-top: 10px;
+    font-size: 5rem;
+    padding: 10px 20px;
+    border: none;
+    display: inline-block;  
+}
+
+/* form */
+
+.form {
+    width: 100px; 
+    margin: 3% auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #ffff; 
+    padding: 20px 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Social media buttons */
+footer .btn-floating {
+    font-size: 20px; 
+    margin: 0 5px; 
+}
+
+/* Copyright text */
+footer .copyright {
+    font-size: 14px;
+    text-align: center;
+    color: #a1a17e;
+}
+
+
+
+@media (max-width: 768px) {
+    .overlay-content {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 445px) {
+    .overlay-content {
+        font-size: 9px;
+    }
+}
