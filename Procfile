@@ -1,0 +1,1 @@
+web: gunicorn bok_pro.wsgi
