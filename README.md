@@ -13,7 +13,7 @@ RESPONSIVE PICTURE HERE
 
 ## Table of contents
 
-- [Project Goals](#project-goals)
+- [Project](#project)
 - [Planning](#planning)
   - [Project Overview](#project-overview)
   - [Objectives](#objectives)
@@ -66,13 +66,60 @@ RESPONSIVE PICTURE HERE
 
 
 
-# Project Goals
+# Project 
 
 # Planning
-## Project Overview
-## Objectives
-## Timeline
 
+I love hanging out with friends and family to try new reasturant.I also work in service therefore I decided to create a reasturant table booking and where people will be able to share there posts too.
+
+## Project Overview
+
+The reasturant is called Sam's bistro.The project is a platform that includes features like my booking and events.
+
+## Objectives
+
+1.Develop a robust backend API using Django Rest Framework to handle data management and user authentication.
+2.Build an intuitive and responsive frontend using bootstrap to provide a creative user experience.
+3. Integrate key features such as user profiles, posts, comments, likes, challenges, and daily routines.
+
+## Timeline
+Timeline
+1.Week 1: Project Setup and Initial Development
+
+- Set up backend and frontend repositories.
+- Configure Django Rest Framework for the backend.
+- Initialize React project for the frontend.
+- Set up initial project structure and environment configurations.
+
+2.Week 2: User Authentication and Profile Management
+
+- Implement user registration, login, and logout functionality.
+- Develop user profile creation and editing features.
+Ensure secure password handling and authentication processes.
+
+3.Week 3: Core Features Development
+
+- Develop the functionality for creating, editing, and deleting posts.
+- Implement comments and likes features for posts.
+- Develop daily routines and challenges features, including creation and management.
+
+4.Week 4: Frontend Integration and Styling
+
+- Integrate backend API with the frontend.
+- Develop responsive and user-friendly UI components.
+- Apply consistent styling using CSS modules or a CSS framework.
+
+5.Week 5: Testing and Debugging
+
+- Conduct thorough testing of all features.
+- Fix any bugs or issues identified during testing.
+- Perform user acceptance testing (UAT) to ensure the platform meets user needs.
+
+6.Week 6: Deployment and Documentation
+
+- Deploy the backend API to a cloud service (e.g., Heroku, AWS).
+- Deploy the frontend application to a hosting service (e.g., Netlify, Vercel).
+- Write comprehensive documentation, including setup instructions, API documentation, and user guides.
 
 # Data Models
 ### Profiles Model
@@ -88,13 +135,84 @@ Example Requests and Responses
 
 
 # Frameworks, Libraries, and Dependencies
+
+## Frameworks, Libraries, and Dependencies
+
+The Fit&Fine project leverages a variety of frameworks, libraries, and dependencies to ensure robust functionality and performance. Below is a detailed list of the key components used:
+
 ### Django Framework and Extensions
+
+1. **Django** (`Django==3.2.25`):
+   - A high-level Python web framework that encourages rapid development and clean, pragmatic design. Django handles much of the complexity of web development, allowing developers to focus on writing their app without needing to reinvent the wheel.
+
+2. **Django REST Framework** (`djangorestframework==3.15.1`):
+   - A powerful and flexible toolkit for building Web APIs in Django. It provides various features such as serialization, authentication, and view sets that simplify API development.
+
+3. **Django Allauth** (`django-allauth==0.44.0`):
+   - Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication.
+
+4. **Django REST Auth** (`dj-rest-auth==2.1.9`):
+   - Provides a set of REST API endpoints for handling user registration and authentication tasks. It’s built on top of Django Allauth and Django REST Framework.
+
+5. **Django Filter** (`django-filter==2.4.0`):
+   - Simplifies the process of filtering querysets in Django REST Framework.
+
+6. **Django CORS Headers** (`django-cors-headers==4.3.1`):
+   - A Django app for handling the server headers required for Cross-Origin Resource Sharing (CORS).
+
 ### Database Management
+
+7. **dj-database-url** (`dj-database-url==0.5.0`):
+   - Allows you to utilize the DATABASE_URL environment variable to configure your Django application.
+
+8. **psycopg2** (`psycopg2==2.9.9`):
+   - PostgreSQL database adapter for Python.
+
 ### Authentication and Security
+
+9. **djangorestframework-simplejwt** (`djangorestframework-simplejwt==4.7.2`):
+   - Provides JSON Web Token (JWT) authentication for Django REST Framework.
+
+10. **oauthlib** (`oauthlib==3.2.2`):
+    - A generic, spec-compliant, thorough implementation of the OAuth request-signing logic for Python.
+
+11. **requests-oauthlib** (`requests-oauthlib==2.0.0`):
+    - OAuthlib support for Python-Requests, the ubiquitous HTTP library for Python.
+
+12. **PyJWT** (`PyJWT==2.8.0`):
+    - A Python library which allows you to encode and decode JSON Web Tokens (JWT).
+
 ### Storage and Image Handling
+
+13. **Pillow** (`Pillow==8.2.0`):
+    - Python Imaging Library (PIL) fork that supports opening, manipulating, and saving many different image file formats.
+
+14. **Cloudinary** (`cloudinary==1.40.0`):
+    - A library that integrates your application with the Cloudinary service for managing media assets such as images and videos.
+
+15. **django-cloudinary-storage** (`django-cloudinary-storage==0.3.0`):
+    - Facilitates the integration of Django with Cloudinary for storing media files.
+
 ### Application Server
+
+16. **Gunicorn** (`gunicorn==22.0.0`):
+    - A Python WSGI HTTP Server for UNIX that serves your Django application and allows it to handle multiple requests simultaneously.
+
 ### Utility Libraries
 
+17. **asgiref** (`asgiref==3.8.1`):
+    - A reference implementation of ASGI, the emerging Python standard for asynchronous web servers and applications.
+
+18. **sqlparse** (`sqlparse==0.5.0`):
+    - A non-validating SQL parser for Python.
+
+19. **python3-openid** (`python3-openid==3.2.0`):
+    - A set of Python packages to support OpenID authentication.
+
+20. **pytz** (`pytz==2024.1`):
+    - World timezone definitions, modern and historical.
+
+This combination of frameworks, libraries, and dependencies ensures that Fit&Fine is robust, scalable, and secure, providing a seamless user experience for managing fitness routines and social interactions.
 
 # Testing and Validating
 ### Manual Testing
